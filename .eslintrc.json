@@ -3,6 +3,12 @@
     "eslint:recommended",
     "next/core-web-vitals"
   ],
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "es6": true
+  },
   "rules": {
     "react/prop-types": "off",
     "no-unused-vars": "warn"
