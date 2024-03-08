@@ -21,7 +21,8 @@ const SingleCoc = ({params}) => {
   useEffect(() => {
     const getCocById = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/coc/${params.id}`,{
+        const domain = process.env.DOMAIN || "http://localhost:3000/api";
+        const response = await fetch(`${domain}/coc/${params.id}`,{
           method: "GET",
         });
         if (!response.ok) {
@@ -70,7 +71,8 @@ const SingleCoc = ({params}) => {
             JobOrderNumber: coc.jobOrder?.jobOrderId,
           };
     
-          const response = await fetch('http://localhost:3000/api/loadCocPdf', {
+          const domain = process.env.DOMAIN || "http://localhost:3000/api";
+          const response = await fetch(`${domain}/loadCocPdf`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

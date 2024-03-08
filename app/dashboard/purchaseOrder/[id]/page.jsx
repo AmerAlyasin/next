@@ -9,6 +9,7 @@ const SinglePurchasePage =({params}) => {
   const [purchaseOrder, setPurchaseOrder] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const domain = process.env.DOMAIN || "http://localhost:3000/api";
 
   const [formData, setFormData] = useState({
     supplierName: '', 
@@ -25,7 +26,7 @@ const SinglePurchasePage =({params}) => {
   useEffect(() => {
     const getPurchaseById = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/purchaseOrder/${params.id}`,{
+        const response = await fetch(`${domain}/purchaseOrder/${params.id}`,{
           method: "GET",
         });
         if (!response.ok) {
@@ -90,7 +91,7 @@ const SinglePurchasePage =({params}) => {
           };
     
           // Send data to the server to create the document
-          const response = await fetch('http://localhost:3000/api/loadPoFile', {
+          const response = await fetch(`${domain}/loadPoFile`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

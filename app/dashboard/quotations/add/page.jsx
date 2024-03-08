@@ -10,13 +10,15 @@ const AddQuotationPage = () => {
   const [rows, setRows] = React.useState([{ number: 1 }]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const domain = process.env.DOMAIN || "http://localhost:3000/api";
+
 
   
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allClients', { method: 'GET' });
+        const response = await fetch(`${domain}/allClients`, { method: 'GET' });
         const data = await response.json();
         console.log('Clients fetched:', data);
         setClients(data);
@@ -34,7 +36,7 @@ const AddQuotationPage = () => {
   useEffect(() => {
     const fetchSales= async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allSales', { method: 'GET' });
+        const response = await fetch(`${domain}/allSales`, { method: 'GET' });
         const data = await response.json();
         console.log('Sales fetched:', data);
         setSales(data);

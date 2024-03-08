@@ -18,33 +18,37 @@ const SingleCocApprove = ({params}) => {
     });
     const [rows, setRows] = useState([]);
   
-  
-            const getCocById = async () => {
-                try {
-                    const response = await fetch(`http://localhost:3000/api/coc/${params.id}`,{
-                      method: "GET",
-                    });
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    const data = await response.json();
-                    setCoc(data);
-                } catch (err) {
-                    setError(`Fetching failed: ${err.message}`);
-                } finally {
-                    setLoading(false);
-                }
-            };
-  
-        useEffect(() => {
-          getCocById();
-        }, []);
+    useEffect(() => {
+      const getCocById = async () => {
+        try {
+          const domain = process.env.DOMAIN || "http://localhost:3000/api";
+          const url = `${domain}/coc/${params.id}`;
+          const response = await fetch(url, {
+            method: "GET",
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          setCoc(data);
+        } catch (err) {
+          setError(`Fetching failed: ${err.message}`);
+          console.error(`Error loading coc: ${err.message}`); // Log the error message
+        } finally {
+          setLoading(false);
+        }
+      };
+    
+      getCocById();
+    }, []);
+    
 
 
         useEffect(() => {
             const fetchUsers= async () => {
               try {
-                const response = await fetch('http://localhost:3000/api/allUsers', { method: 'GET' });
+                const domain = process.env.DOMAIN || "http://localhost:3000/api";
+                const response = await fetch(`${domain}/allUsers`, { method: 'GET' });
                 const data = await response.json();
                 console.log('Users fetched:', data);
                 setUsers(data);
@@ -90,7 +94,8 @@ const SingleCocApprove = ({params}) => {
             };
       
             // Send data to the server to create the document
-            const response = await fetch('http://localhost:3000/api/loadCocFile', {
+            const domain = process.env.DOMAIN || "http://localhost:3000/api";
+            const response = await fetch(`${domain}/loadCocFile`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -146,7 +151,8 @@ const SingleCocApprove = ({params}) => {
               };
         
               // Send data to the server to create the document
-              const response = await fetch('http://localhost:3000/api/loadCocPdf', {
+              const domain = process.env.DOMAIN || "http://localhost:3000/api";
+              const response = await fetch(`${domain}/loadCocPdf`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

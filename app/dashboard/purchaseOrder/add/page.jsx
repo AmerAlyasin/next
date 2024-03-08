@@ -7,18 +7,18 @@ import { FaPlus, FaTrash } from 'react-icons/fa';
 const AddPurchasePage = () => {
   const [rows, setRows] = React.useState([{ number: 1 }]);
   const[suppliers, setSuppliers] = useState([]); 
-  const[users, setUsers] = useState([]); 
   const[quotations, setQuotations] = useState([]); 
   const[sales, setSales] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const domain = process.env.DOMAIN || "http://localhost:3000/api";
 
 
 
   useEffect(() => { 
     const fetchSuppliers = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allSuppliers', { method: 'GET' });
+        const response = await fetch(`${domain}/allSuppliers`, { method: 'GET' });
         const data = await response.json();
         console.log('Suppliers fetched:', data);
         setSuppliers(data);
@@ -37,7 +37,7 @@ const AddPurchasePage = () => {
   useEffect(() => { 
     const fetchQuotations = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allQuotations', { method: 'GET' });
+        const response = await fetch(`${domain}/allQuotations`, { method: 'GET' });
         const data = await response.json();
         console.log('Quotations fetched:', data);
         setQuotations(data);
@@ -55,7 +55,7 @@ const AddPurchasePage = () => {
   useEffect(() => { 
     const fetchSales = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allSales', { method: 'GET' });
+        const response = await fetch(`${domain}/allSales`, { method: 'GET' });
         const data = await response.json();
         console.log('sales fetched:', data);
         setSales(data);

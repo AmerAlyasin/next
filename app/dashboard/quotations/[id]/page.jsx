@@ -23,12 +23,14 @@ const SingleQuotation = ({params}) => {
     excluding: '',
   });
   const [rows, setRows] = useState([]);
+  const domain = process.env.DOMAIN || "http://localhost:3000/api";
+
 
 
   useEffect(() => {
     const getQuotationById = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/quotation/${params.id}`,{
+        const response = await fetch(`${domain}/quotation/${params.id}`,{
           method: "GET",
         });
         if (!response.ok) {
@@ -92,7 +94,7 @@ const SingleQuotation = ({params}) => {
           };
     
           // Send data to the server to create the document
-          const response = await fetch('http://localhost:3000/api/loadQuoPdf', {
+          const response = await fetch(`${domain}/loadQuoPdf`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

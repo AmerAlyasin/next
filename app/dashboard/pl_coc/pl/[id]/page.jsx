@@ -21,7 +21,8 @@ const SinglePl = ({params}) => {
   useEffect(() => {
     const getPlById = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/pl/${params.id}`,{
+        const domain = process.env.DOMAIN || "http://localhost:3000/api";
+        const response = await fetch(`${domain}/pl/${params.id}`,{
           method: "GET",
         });
         if (!response.ok) {
@@ -123,7 +124,8 @@ const SinglePl = ({params}) => {
           };
     
           // Send data to the server to create the document
-          const response = await fetch('http://localhost:3000/api/loadPlPdf', {
+          const domain = process.env.DOMAIN || "http://localhost:3000/api";
+          const response = await fetch(`${domain}/loadPlPdf`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

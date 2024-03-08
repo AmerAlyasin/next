@@ -12,10 +12,11 @@ const AddJobOrderPage = () => {
 
 
 
- 
+ useEffect(()=> {
   const fetchClientsWithQuotations = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/clientWithQuoAndPo', {
+      const domain = process.env.DOMAIN || "http://localhost:3000/api";
+      const response = await fetch(`${domain}/clientWithQuoAndPo`, {
         method: "POST"
       });
       if (response.ok) {
@@ -39,7 +40,6 @@ const AddJobOrderPage = () => {
     }
   };
 
-  useEffect(() => {
     // Fetch clients with quotations on component mount
     fetchClientsWithQuotations();
   }, []);

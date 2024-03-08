@@ -17,10 +17,11 @@ const AddApproveQuo = () => {
   
 
  
-  
+  useEffect(() => {
   const fetchClientsWithQuotations = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/clientWithQuoAndPo', {
+      const domain = process.env.DOMAIN || "http://localhost:3000/api";
+      const response = await fetch(`${domain}/clientWithQuoAndPo`, {
         method: "POST"
       });
       if (response.ok) {
@@ -44,8 +45,6 @@ const AddApproveQuo = () => {
     }
   };
 
-  useEffect(() => {
-    // Fetch clients with quotations on component mount
     fetchClientsWithQuotations();
   }, []);
 
@@ -64,7 +63,8 @@ const AddApproveQuo = () => {
   useEffect(() => {
     const fetchSales= async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allSales', { method: 'GET' });
+        const domain = process.env.DOMAIN || "http://localhost:3000/api";
+        const response = await fetch(`${domain}/allSales`, { method: 'GET' });
         const data = await response.json();
         console.log('Sales fetched:', data);
         setSales(data);
@@ -81,7 +81,8 @@ const AddApproveQuo = () => {
   useEffect(() => {
     const fetchUsers= async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allUsers', { method: 'GET' });
+        const domain = process.env.DOMAIN || "http://localhost:3000/api";
+        const response = await fetch(`${domain}/allUsers`, { method: 'GET' });
         const data = await response.json();
         setUsers(data);
         setLoading(false);

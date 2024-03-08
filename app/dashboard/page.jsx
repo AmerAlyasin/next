@@ -16,15 +16,17 @@ const Dashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const domain = process.env.DOMAIN || "http://localhost:3000/api";
+
 
   useEffect(() => {
     const fetchCounts = async () => {
       try {
         // Simultaneously fetch all counts
         const [userRes, clientRes, supplierRes] = await Promise.all([
-          fetch('http://localhost:3000/api/allUsersCount'),
-          fetch('http://localhost:3000/api/allClientsCount'),
-          fetch('http://localhost:3000/api/allSuppliersCount')
+          fetch(`${domain}/allUsersCount`),
+          fetch(`${domain}/allClientsCount`),
+          fetch(`${domain}/allSuppliersCount`)
         ]);
 
         // Check if all responses are OK

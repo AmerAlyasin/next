@@ -15,10 +15,11 @@ const AddApprovePo = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  
+  useEffect(()=>{
   const fetchSuppliersWithPurchaseOrders = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/supplierWithPo', {
+      const domain = process.env.DOMAIN || "http://localhost:3000/api";
+      const response = await fetch(`${domain}/supplierWithPo`, {
         method: "POST"
       });
       if (response.ok) {
@@ -42,7 +43,7 @@ const AddApprovePo = () => {
     }
   };
 
-  useEffect(() => {
+  
     fetchSuppliersWithPurchaseOrders();
   }, []);
 
@@ -62,7 +63,8 @@ const AddApprovePo = () => {
   useEffect(() => {
     const fetchSales= async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allSales', { method: 'GET' });
+        const domain = process.env.DOMAIN || "http://localhost:3000/api";
+        const response = await fetch(`${domain}/allSales`, { method: 'GET' });
         const data = await response.json();
         console.log('Sales fetched:', data);
         setSales(data);
@@ -79,7 +81,8 @@ const AddApprovePo = () => {
   useEffect(() => {
     const fetchUsers= async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allUsers', { method: 'GET' });
+        const domain = process.env.DOMAIN || "http://localhost:3000/api";
+        const response = await fetch(`${domain}/allUsers`, { method: 'GET' });
         const data = await response.json();
         console.log('Users fetched:', data);
         setUsers(data);
@@ -96,7 +99,8 @@ const AddApprovePo = () => {
   useEffect(() => {
     const fetchQuotations= async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allQuotations', { method: 'GET' });
+        const domain = process.env.DOMAIN || "http://localhost:3000/api";
+        const response = await fetch(`${domain}/allQuotations`, { method: 'GET' });
         const data = await response.json();
         console.log('Quotation fetched:', data);
         setQuotations(data);

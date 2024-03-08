@@ -14,9 +14,13 @@ const AddPlPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const domain = process.env.DOMAIN || "http://localhost:3000/api";
+
+
+  useEffect(()=> {
   const fetchClientsWithQuotations = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/clientWithQuoAndPo', {
+      const response = await fetch(`${domain}/clientWithQuoAndPo`, {
         method: "POST"
       });
       if (response.ok) {
@@ -40,8 +44,6 @@ const AddPlPage = () => {
     }
   };
 
-  useEffect(() => {
-    // Fetch clients with quotations on component mount
     fetchClientsWithQuotations();
   }, []);
 
@@ -86,7 +88,7 @@ const AddPlPage = () => {
   useEffect(() => {
     const fetchSales = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allSales', { method: 'GET' });
+        const response = await fetch(`${domain}/allSales`, { method: 'GET' });
         const data = await response.json();
         console.log('Sales fetched:', data);
         setSales(data);
@@ -103,7 +105,7 @@ const AddPlPage = () => {
   useEffect(() => {
     const fetchJobOrder = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/allJobs', { method: 'GET' });
+        const response = await fetch(`${domain}/allJobs`, { method: 'GET' });
         const data = await response.json();
         console.log('Purchase fetched:', data);
         setjobOrders(data);
