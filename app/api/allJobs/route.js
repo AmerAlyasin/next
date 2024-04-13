@@ -2,6 +2,7 @@
 import {fetchAllJobs} from '@/app/lib/data'; // Adjust the import path as needed
 import { NextResponse } from 'next/server';
 
+export const revalidate = 0; 
 export async function GET(req, res) {
     try {
         const jobOrders = await fetchAllJobs(); // Example function call

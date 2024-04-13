@@ -2,7 +2,6 @@ import React from 'react'
 import styles from '@/app/ui/dashboard/clients/clients.module.css';
 import Search from '@/app/ui/dashboard/search/search';
 import Link from 'next/link';
-import Image from 'next/image';
 import Pagination from '@/app/ui/dashboard/pagination/pagination';
  import { fetchClients } from '@/app/lib/data';
 import { deleteClient } from '@/app/lib/actions';

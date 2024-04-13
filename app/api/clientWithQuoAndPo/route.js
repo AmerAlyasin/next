@@ -2,6 +2,7 @@
 import {fetchClientsWithQuotationsAndPO } from '@/app/lib/data';
 import { NextResponse } from 'next/server';
 
+export const revalidate = 0; 
 export async function POST(req) {
     try {
         const clientsWithQuotations = await fetchClientsWithQuotationsAndPO();

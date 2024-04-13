@@ -1,6 +1,7 @@
 import { fetchAllSales } from '@/app/lib/data'; 
 import { NextResponse } from 'next/server';
 
+export const revalidate = 0; 
 export async function GET(req, res) {
     try {
         const sales = await fetchAllSales(); // Example function call

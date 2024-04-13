@@ -1,6 +1,7 @@
 import { fetchUserCount } from '@/app/lib/data';
 import { NextResponse } from 'next/server';
 
+export const revalidate = 0; 
 export async function GET() {
   try {
     const userCount = await fetchUserCount(); // Get the user count

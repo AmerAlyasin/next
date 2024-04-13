@@ -234,12 +234,14 @@ export const updateSale = async (formData) => {
 };
 
 
+
+
 export const deleteSale = async (formData) => {
   const { id } = Object.fromEntries(formData);
 
   try {
      connectToDB();        
-    await Client.findByIdAndDelete(id)
+    await Sale.findByIdAndDelete(id)
 
   } catch (err) {
     console.log(err)

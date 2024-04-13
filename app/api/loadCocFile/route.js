@@ -3,6 +3,7 @@ import PizZip from 'pizzip';
 import Docxtemplater from 'docxtemplater';
 import { NextResponse } from 'next/server';
 
+export const revalidate = 0; 
 export async function POST(req) {
   try {
     const chunks = [];
