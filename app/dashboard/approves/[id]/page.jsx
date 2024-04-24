@@ -29,7 +29,7 @@ const SingleApprovePage = ({params}) => {
     const getQuotationById = async () => {
       try {
         const domain = process.env.DOMAIN || "http://localhost:3000/api";
-        const response = await fetch(`${domain}quotation/${params.id}`,{
+        const response = await fetch(`${domain}/quotation/${params.id}`,{
           method: "GET",
         });
         if (!response.ok) {

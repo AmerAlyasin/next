@@ -206,7 +206,7 @@ const SingleApprovePo = ({params}) => {
                 console.error('Error downloading the document:', error);
             }
         };
-                
+                 
       
   
     
@@ -218,7 +218,7 @@ const SingleApprovePo = ({params}) => {
               quotationId: purchaseOrder.quotation ? purchaseOrder.quotation.quotationId:'',
               user:purchaseOrder.user ? purchaseOrder.user.username:'',
               saleName:purchaseOrder.sale ? purchaseOrder.sale.name:'',
-              supplierName:purchaseOrder.sale ? purchaseOrder.supplier.name:'',
+              supplierName:purchaseOrder.supplier ? purchaseOrder.supplier.name:'',
               deliveryLocation:purchaseOrder.deliveryLocation,
               products:purchaseOrder.products,
               paymentTerm:purchaseOrder.paymentTerm,
