@@ -72,7 +72,7 @@ const clientSchema = new Schema(
       unique: true,
     },
     address: {
-      type: String,
+      type: String, 
       required: true,
 
     },
